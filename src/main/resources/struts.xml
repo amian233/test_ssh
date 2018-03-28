@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.enable.SlashesInActionNames" value="true"/>
+
+
+    <!--url是action里面定义的一个变量，代表最后跳转的位置-->
+    <!--通配符使用-->
+    <!--我这里的意思是： 三个星号分别与包名、类名、方法名 相匹配-->
+    <package name="common" extends="struts-default" namespace="/">
+        <action name="*/*/*"  class="me.asherli.{1}.action.{2}Action" method="{3}" >
+            <result type="dispatcher">${url}</result>
+            <result name="redirect" type="redirect">${url}</result>
+        </action>
+    </package>
+</struts>
